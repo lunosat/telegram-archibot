@@ -17,6 +17,6 @@ const handler = async (ctx) => {
     await bot.sendMessage(ctx.from.id, 'Over here, stranger.', button)
 }
 
-handler.command = '/start'
+handler.command = /^\/start$/
 
 export default handler

@@ -15,10 +15,17 @@ const registerCommands = async (bot) => {
 
     for (let command of commands) {
         try {
-            const commandHandler = await import(path.join(__dirname, command));
+            const commandModule = await import(path.join(__dirname, command));
+           
+            const handler = commandModule.default || commandModule.handler || commandModule;
 
-            bot.onText(commandHandler.command, commandHandler.default)
-    
+            if (!(handler.command instanceof RegExp)) {
+                console.warn(`O comando definido em ${command} não possui uma expressão regular válida.`);
+                continue;
+            }
+
+            bot.onText(handler.command, handler);
+
             console.log(`Command loaded: ${command}`)
         } catch (error) {
             console.error(`Error on load command: ${command}`)

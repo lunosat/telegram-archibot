@@ -5,7 +5,7 @@ import fs from "fs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const registerEvents = async () => {
+const registerEvents = async (bot) => {
     let events = fs.readdirSync(path.join(__dirname))
 
     const managerFile = events.indexOf('manager.js')
@@ -15,7 +15,11 @@ const registerEvents = async () => {
 
     for (let event of events) {
         try {
-            await import(path.join(__dirname, event));
+            const eventModule = await import(path.join(__dirname, event));
+
+            const handler = eventModule.default || eventModule.handler || eventModule
+
+            bot.on(handler.event, handler)
     
             console.log(`Event loaded: ${event}`)
         } catch (error) {
