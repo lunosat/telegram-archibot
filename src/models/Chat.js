@@ -26,7 +26,7 @@ const photoSchema = new Schema({
 })
 
 const chatSchema = new Schema({
-    telegramId: {
+    id: {
         type: String
     },
     title: {
