@@ -1,7 +1,6 @@
 import { bot } from '../index.js'
 
 const handler = async (ctx) => {
-
     const button = {
         reply_markup: {
             inline_keyboard: [

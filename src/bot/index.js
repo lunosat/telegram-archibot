@@ -17,8 +17,8 @@ const initBot = async () => {
             console.log(msg)
         }) */
 
-        await registerEvents(bot)
-        await registerCommands(bot)
+       await registerCommands(bot)
+       await registerEvents(bot)
         
     } catch (error) {
         
