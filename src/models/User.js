@@ -1,7 +1,13 @@
 import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
-    telegramId: {
+    id: {
+        type: String
+    },
+    first_name: {
+        type: String
+    },
+    last_name: {
         type: String
     },
     username: {
@@ -9,6 +15,12 @@ const userSchema = new Schema({
     },
     password: {
         type: String
+    },
+    language_code: {
+        type: String
+    },
+    is_premium: {
+        type: Boolean
     },
     role: {
         type: String,
